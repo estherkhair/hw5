@@ -1,5 +1,5 @@
 
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +7,20 @@
     <title>Tic-Tac-Toe</title>
 </head>
 <body>
-    <div class="grid-container" id="grid-container"></div>
-    <p id="player-turn"></p>
     <button id="new-game">New Game</button>
-    <script>
-const gridContainer = document.getElementById("grid-container");
-const playerTurnDisplay = document.getElementById("player-turn");
-const newGameButton = document.getElementById("new-game");
+    <p id="player-turn"></p>
+    <div class="grid-container" id="grid-container"></div>
+   <script>
+    
+
+gridContainer = document.getElementById("grid-container");
+gridClick = document.getElementById("gridclick");
+playerTurnDisplay = document.getElementById("player-turn");
+newGameButton = document.getElementById("new-game");
 
 let currentPlayer = "X";
 let gameBoard = ["", "", "", "", "", "", "", "", ""];
+
 
 // Function to check win condition
 function checkWin() {
@@ -46,7 +50,8 @@ function checkStalemate() {
 }
 
 // Function to handle grid item click
-function handleGridItemClick(index) {
+function GridClick(index) {
+    
     if (gameBoard[index] === "" && !checkWin() && !checkStalemate()) {
         gameBoard[index] = currentPlayer;
         render();
@@ -65,6 +70,9 @@ function handleGridItemClick(index) {
 function resetGame() {
     currentPlayer = "X";
     gameBoard = ["", "", "", "", "", "", "", "", ""];
+    for(i = 0; i < 10; i++) {
+        
+    }
     render();
     playerTurnDisplay.textContent = `Player ${currentPlayer}'s turn`;
 }
@@ -76,10 +84,12 @@ function render() {
         const gridItem = document.createElement("div");
         gridItem.classList.add("grid-item");
         gridItem.textContent = symbol;
-        gridItem.addEventListener("click", () => handleGridItemClick(index));
+        gridItem.addEventListener("click", () => GridClick(index));
         gridContainer.appendChild(gridItem);
     });
 }
+
+
 
 // Event listener for new game button
 newGameButton.addEventListener("click", resetGame);
@@ -87,6 +97,6 @@ newGameButton.addEventListener("click", resetGame);
 // Initial render
 resetGame();
 
-    </script>
+   </script>
 </body>
 </html>
